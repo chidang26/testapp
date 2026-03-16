@@ -31,6 +31,7 @@ jobs:
             -sdk iphonesimulator \
             -destination 'platform=iOS Simulator,name=iPhone 16' \
             -configuration Debug \
+            -derivedDataPath ./build \
             build \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO \
@@ -44,16 +45,24 @@ jobs:
             -sdk iphoneos \
             -destination 'generic/platform=iOS' \
             -configuration Release \
+            -derivedDataPath ./build \
             build \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGNING_ALLOWED=NO
+
+      - name: Package IPA
+        run: |
+          mkdir -p Payload
+          cp -r ./build/Build/Products/Release-iphoneos/xcodeapptesst.app Payload/
+          zip -r xcodeapptesst.ipa Payload
+          rm -rf Payload
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: ios-build
           path: |
-            **/*.app
-            **/*.ipa
+            xcodeapptesst.ipa
+            ./build/Build/Products/**/*.app
           retention-days: 7
