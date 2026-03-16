@@ -5,7 +5,7 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
-  workflow_dispatch:  # Cho phép chạy manual
+  workflow_dispatch:
 
 jobs:
   build:
@@ -20,8 +20,8 @@ jobs:
 
       - name: Build for Simulator
         run: |
-          cd xcodeapptesst/xcodeapptesst
           xcodebuild \
+            -project xcodeapptesst/xcodeapptesst.xcodeproj \
             -scheme xcodeapptesst \
             -sdk iphonesimulator \
             -destination 'platform=iOS Simulator,name=iPhone 16' \
@@ -33,8 +33,8 @@ jobs:
 
       - name: Build for Device (unsigned)
         run: |
-          cd xcodeapptesst/xcodeapptesst
           xcodebuild \
+            -project xcodeapptesst/xcodeapptesst.xcodeproj \
             -scheme xcodeapptesst \
             -sdk iphoneos \
             -destination 'generic/platform=iOS' \
