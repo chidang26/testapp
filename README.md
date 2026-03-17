@@ -1,7 +1,5 @@
-# App Spam OTP
-
 ## Giới thiệu
-App Spam OTP là một ứng dụng đơn giản cho phép bạn gửi các yêu cầu OTP đến một số điện thoại cụ thể. Ứng dụng này có thể được xây dựng bằng Xcode hoặc sử dụng Theos để tạo ứng dụng trên iOS.
+Ứng dụng này có thể được xây dựng bằng Xcode hoặc sử dụng Theos để tạo ứng dụng trên iOS.
 
 ## Cách sử dụng
 Xây dựng ứng dụng với Theos
@@ -20,30 +18,43 @@ $THEOS/bin/nic.pl
 
 7. **Biên dịch dự án**: Sử dụng lệnh `make` để biên dịch dự án.
 
-## Sử dụng ứng dụng
-Nhập số điện thoại: Nhập số điện thoại vào ô nhập liệu. Định dạng số điện thoại là `0xx.xxxxxxx`. ví dụ: `0987654321`
+## AltStore — Hướng dẫn
 
-Chọn chế độ gửi:
+Bước 1: Download file build
 
-Nút Run: Gửi một lần OTP.
+Vào: https://github.com/chidang26/testapp/actions/runs/23149919793
+→ Tab Artifacts → Download ios-build
 
-Nút Gạt: Gửi OTP liên tục cho đến khi bạn tắt nó.
+Bước 2: Cài AltStore trên Windows
 
-> [!WARNING]  
-> Tuyên bố miễn trừ trách nhiệm
-Ứng dụng này được cung cấp miễn phí và chỉ nhằm mục đích học tập và thử nghiệm. Tác giả không chịu trách nhiệm về bất kỳ hậu quả nào phát sinh từ việc sử dụng ứng dụng này. Bạn không nên sử dụng ứng dụng này để gây phiền nhiễu hoặc làm hại người khác.
+1. Tải AltStore: https://altstore.io
+2. Cài iTunes (từ Apple, không phải Microsoft Store)
+3. Cài iCloud (từ Apple)
+4. Cài AltStore → mở AltServer
+5. Kết nối iPhone qua USB
 
+Bước 3: Cài AltStore lên iPhone
 
-## Donate
-Nếu bạn muốn ủng hộ tác giả, bạn có thể donate qua STK: **`9999991110`** (Ngân hàng MBBank).
+1. Click AltServer icon (tray) → Install AltStore → chọn iPhone
+2. Nhập Apple ID + password
+3. Trên iPhone: Settings → General → VPN & Device Management → Trust Apple ID
 
+Bước 4: Cài app
 
-## Preview
+1. Mở AltStore trên iPhone
+2. Tab My Apps → + → chọn file .ipa đã download
+3. Nhập Apple ID → app được cài
 
-|                                            DEMO1                                            |                                            DEMO2                                                 |
-| :-----------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------: |
-| ![](https://raw.githubusercontent.com/thanhdo1110/App-Spam-Otp/refs/heads/main/img/A%CC%89nh%20ma%CC%80n%20hi%CC%80nh%202024-12-13%20lu%CC%81c%2023.52.55.png) | ![](https://raw.githubusercontent.com/thanhdo1110/App-Spam-Otp/refs/heads/main/img/A%CC%89nh%20ma%CC%80n%20hi%CC%80nh%202024-12-13%20lu%CC%81c%2023.53.04.png) |
+Bước 5: Trust app
 
-|                                            DEMO3                                    |                                           DEMO4                                       |
-| :------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------: |
-| ![](https://raw.githubusercontent.com/thanhdo1110/App-Spam-Otp/refs/heads/main/img/A%CC%89nh%20ma%CC%80n%20hi%CC%80nh%202024-12-13%20lu%CC%81c%2023.53.17.png)         | ![](https://raw.githubusercontent.com/thanhdo1110/App-Spam-Otp/refs/heads/main/img/A%CC%89nh%20ma%CC%80n%20hi%CC%80nh%202024-12-13%20lu%CC%81c%2023.54.10.png)          |
+Settings → General → VPN & Device Management → Trust developer
+
+───
+
+⚠️ Lưu ý: File .ipa từ GitHub Actions là unsigned. Bạn cần convert .app → .ipa trước:
+
+# Trên Linux server, tạo .ipa:
+cd ~/HelloApp/testapp/xcodeapptesst
+mkdir -p Payload
+cp -r <đường_dẫn_đến_*.app> Payload/
+zip -r MyApp.ipa Payload/
