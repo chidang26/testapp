@@ -144,8 +144,8 @@
                       "------------------------------\n"
                       "Donate.\n"
                       "STK: 9999991110 || MbBank\n"
-                                "- Phiên bản: v0.2 -\n"
-                      "Thêm Api 36.");
+                                 "- Phiên bản: v0.3 -\n"
+                      "Thêm Api 46.");
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:text];
     [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:NSMakeRange(0, attributedString.length)];
 
@@ -290,6 +290,16 @@
     [self watsons];
     [self tokyolife];
     [self go2joy];
+    [self tiki];
+    [self grab];
+    [self be];
+    [self lazada];
+    [self haravan];
+    [self baemin];
+    [self gojek];
+    [self momo];
+    [self vnpay];
+    [self zalo];
 }
 
 - (void)runButtonTapped:(id)sender {
@@ -339,6 +349,16 @@
             [self watsons];
             [self tokyolife];
             [self go2joy];
+            [self tiki];
+            [self grab];
+            [self be];
+            [self lazada];
+            [self haravan];
+            [self baemin];
+            [self gojek];
+            [self momo];
+            [self vnpay];
+            [self zalo];
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.currentHUD.label.text = @"Đã Gửi Yêu Cầu Spam Xong";
